@@ -11,7 +11,6 @@ const config = {
   appId: "1:489152796548:web:4828aa2525b7d929b0afd1",
   measurementId: "G-2KBXMB5HFC",
 };
-
 firebase.initializeApp(config);
 
 export const createUserProfileDocument = async (userAuth, additionalData) => {
@@ -24,7 +23,6 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
   if (!snapShot.exists) {
     const { displayName, email } = userAuth;
     const createdAt = new Date();
-
     try {
       await userRef.set({
         displayName,
@@ -33,9 +31,10 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
         ...additionalData,
       });
     } catch (error) {
-      console.log("error creating user ", error.message);
+      console.log("error creating user", error.message);
     }
   }
+
   return userRef;
 };
 
